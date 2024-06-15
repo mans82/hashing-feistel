@@ -74,7 +74,11 @@ def feistel_decrypt(ciphertext: bytes, key: bytes) -> bytes:
 
 def main():
     key = md5(b'key', usedforsecurity=True).digest()
-    plaintext = b'32ByteLongSequenceOfCharsAsPlain'
+    plaintext = input(
+        'Enter 256bit aligned plaintext (leave blank for a default): ') or '32ByteLongSequenceOfCharsAsPlain'
+    plaintext = plaintext.encode('ascii')
+
+    print()
     print(' ==> Plaintext:      ', plaintext)
     ciphertext = feistel_encrypt(plaintext, key)
     print(' ==> Encrypted:      ', ciphertext)
